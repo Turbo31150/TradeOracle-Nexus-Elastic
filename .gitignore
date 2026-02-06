@@ -11,17 +11,18 @@ venv/
 .venv/
 env/
 
-# Node.js
-node_modules/
-.next/
-out/
-.turbo/
-
 # Environment & Secrets
 .env
 .env.local
 .env.*.local
 *.pem
+
+# Private core (NEVER push private configs)
+private_core/
+
+# SQLite databases
+*.db
+*.sqlite
 
 # Elasticsearch
 elasticsearch-data/
@@ -37,9 +38,13 @@ elasticsearch-data/
 Thumbs.db
 desktop.ini
 
+# Audio/Media (large files)
+*.wav
+*.mp3
+*.mp4
+
 # Logs
 *.log
-npm-debug.log*
 
 # Coverage & Testing
 coverage/
