@@ -84,6 +84,63 @@ cp .env.example .env
 python main.py
 ```
 
+
+## What is TradeOracle Nexus?
+
+The **analytics and intelligence layer** of TradeOracle. While TradeOracle makes trading decisions in real-time, Nexus stores everything in Elasticsearch for deep analysis later.
+
+Think of it as the "memory" of the trading system — every signal, every trade, every market condition is indexed and searchable. Monte Carlo simulations run thousands of scenarios to stress-test strategies.
+
+## How It Works
+
+```
+1. TradeOracle generates signals → stored in Elasticsearch
+2. Nexus indexes: price, volume, signal type, confidence, result
+3. Monte Carlo runs 10,000 simulations on historical data
+4. Dashboard shows: win rate, drawdown, Sharpe ratio, best/worst scenarios
+5. Strategy auto-adjusts based on backtesting results
+```
+
+## Usage Examples
+
+```python
+# Search all BREAKOUT signals from the last 7 days
+from nexus import SignalSearch
+results = SignalSearch().query(
+    signal_type="BREAKOUT",
+    timeframe="7d",
+    min_confidence=70
+)
+# → 23 signals found, 78% win rate, avg +3.2% profit
+
+# Run Monte Carlo on a strategy
+from nexus import MonteCarlo
+mc = MonteCarlo(strategy="momentum", simulations=10000)
+report = mc.run()
+# → Expected annual return: 42%, Max drawdown: -12%, Sharpe: 1.8
+
+# Dashboard query
+from nexus import Dashboard
+stats = Dashboard().daily_summary()
+# → {trades: 15, wins: 11, losses: 4, pnl: +$234, best: SOL +8.2%}
+```
+
+## Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Signal Indexing** | Every signal stored with full context (price, volume, indicators) |
+| **Monte Carlo** | 10,000 simulation backtesting with confidence intervals |
+| **Win Rate Tracking** | Per-signal-type, per-timeframe, per-asset statistics |
+| **Drawdown Analysis** | Maximum drawdown detection and strategy adjustment |
+| **Dashboard** | Real-time analytics with historical comparisons |
+| **Elasticsearch** | Sub-second queries on millions of data points |
+
+## Why Elasticsearch?
+
+SQLite is great for local storage, but trading analytics needs **full-text search**, **aggregations**, and **real-time dashboards** on millions of records. Elasticsearch provides all three with sub-second response times.
+
+
 ---
 
 <div align="center">
