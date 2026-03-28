@@ -91,3 +91,6 @@ python main.py
 **Franc Delmas (Turbo31150)** · Agent Builder Hackathon 2026 · MIT License
 
 </div>
+
+
+Part of [JARVIS OS](https://github.com/Turbo31150/jarvis-linux) ecosystem.
