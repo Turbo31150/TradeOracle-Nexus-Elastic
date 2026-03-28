@@ -15,6 +15,20 @@
 
 ---
 
+
+
+## Architecture
+
+```mermaid
+graph LR
+    Market[Market Data] --> Scanner[Signal Scanner]
+    Scanner --> ES[(Elasticsearch)]
+    ES --> Monte[Monte Carlo]
+    ES --> Analytics[Analytics]
+    Monte --> Dashboard[Dashboard]
+    Analytics --> Dashboard
+```
+
 ## Présentation
 
 **NEXUS·ELASTIC** est un agent d'intelligence financière construit pour l'**Agent Builder Hackathon 2026**. Il combine Elasticsearch (vector search + full-text) avec Gemini pour créer un assistant financier capable d'analyser des marchés, rechercher des patterns historiques, et générer des recommandations basées sur des données vectorisées.
